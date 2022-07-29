@@ -1,1 +1,115 @@
-<p>register works!</p>
+<div class="row">
+  <div *ngIf="registerSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Bienvenid@!</strong> has iniciado sesion correctamente.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div *ngIf="registerError" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Lo sentimos!</strong> no has podido iniciar sesion correctamente.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <form #formRegister="ngForm" (ngSubmit)="register(formRegister.value)">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="col-auto">
+          <label for="email" class="col-form-label">Email</label>
+        </div>
+        <div class="col-auto">
+          <input
+            type="email"
+            class="form-control"
+            [ngClass]="{
+              'border-danger': email.invalid && email.touched
+            }"
+            [ngClass]="{ 'border-success': email.valid && email.touched }"
+            name="email"
+            ngModel
+            #email="ngModel"
+            required
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+        </div>
+        <div class="col-auto" *ngIf="email.invalid && email.touched">
+          <span class="form-text text-danger"> *Debe de ser tipo email@email.es. </span>
+        </div>
+
+        <div class="col-auto">
+          <label for="password" class="col-form-label">Contraseña</label>
+        </div>
+        <div class="col-auto">
+          <input
+            type="password"
+            class="form-control"
+            [ngClass]="{
+              'border-danger':
+                (password.invalid && password.touched) ||
+                (password_confirmation.invalid && password_confirmation.touched) ||
+                password_confirmation.value !== password.value
+            }"
+            [ngClass]="{
+              'border-success':
+                password.valid &&
+                password.touched &&
+                password_confirmation.valid &&
+                password_confirmation.touched &&
+                password_confirmation.value === password.value
+            }"
+            name="password"
+            ngModel
+            #password="ngModel"
+            minlength="6"
+            required />
+        </div>
+        <div
+          class="col-auto"
+          *ngIf="
+            (password.invalid && password.touched) ||
+            (password_confirmation.invalid && password_confirmation.touched) ||
+            password_confirmation.value !== password.value
+          ">
+          <span class="form-text text-danger"
+            >*La contraseña es obligatoria y deben de ser identicas. 6 caracteres</span
+          >
+        </div>
+
+        <div class="col-auto">
+          <label for="password_confirmation" class="col-form-label">Confirmar contraseña</label>
+        </div>
+        <div class="col-auto">
+          <input
+            type="password"
+            class="form-control"
+            [ngClass]="{
+              'border-danger':
+                (password.invalid && password.touched) ||
+                (password_confirmation.invalid && password_confirmation.touched) ||
+                password_confirmation.value !== password.value
+            }"
+            [ngClass]="{
+              'border-success':
+                password.valid &&
+                password.touched &&
+                password_confirmation.valid &&
+                password_confirmation.touched &&
+                password_confirmation.value === password.value
+            }"
+            name="password_confirmation"
+            ngModel
+            #password_confirmation="ngModel"
+            minlength="6"
+            required />
+        </div>
+        <div
+          class="col-auto"
+          *ngIf="
+            (password.invalid && password.touched) ||
+            (password_confirmation.invalid && password_confirmation.touched) ||
+            password_confirmation.value !== password.value
+          ">
+          <span class="form-text text-danger">
+            *La contraseña es obligatoria y deben de ser identicas. 6 caracteres</span
+          >
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="formRegister.invalid">Iniciar sesion</button>
+      </div>
+    </div>
+  </form>
+</div>

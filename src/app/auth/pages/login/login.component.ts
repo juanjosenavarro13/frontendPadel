@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginModel } from '../../models/authModel';
 import { AuthHttpService } from '../../services/auth-http.service';
 import { AuthService } from '../../services/auth.service';
@@ -11,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   loginError: boolean = false;
   loginSuccess: boolean = false;
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -21,6 +22,8 @@ export class LoginComponent implements OnInit {
         console.log(data);
         this.loginSuccess = true;
         this.loginError = false;
+        this.authService.setToken(data);
+        this.router.navigate(['/']);
       },
       error => {
         this.loginError = true;

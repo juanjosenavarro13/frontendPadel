@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  logeado: boolean = false;
+  constructor(private authService: AuthService) {
+    this.authService.token$.subscribe(token => {
+      if (token.access_token) {
+        this.logeado = true;
+      }
+    });
+  }
   title = 'frontendPadel';
 }
