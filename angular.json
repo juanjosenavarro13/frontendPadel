@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "forntendPadel": {
+    "frontendPadel": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "forntendPadel:build:production"
+              "browserTarget": "frontendPadel:build:production"
             },
             "development": {
-              "browserTarget": "forntendPadel:build:development"
+              "browserTarget": "frontendPadel:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "forntendPadel:build"
+            "browserTarget": "frontendPadel:build"
           }
         },
         "test": {
@@ -116,7 +116,7 @@
       }
     }
   },
-  "defaultProject": "forntendPadel",
+  "defaultProject": "frontendPadel",
   "cli": {
     "defaultCollection": "@angular-eslint/schematics"
   }

@@ -5,18 +5,16 @@ import { environment } from 'src/environments/environment';
 import { AuthModel, LoginModel, RegisterModel } from '../models/authModel';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthHttpService {
+  constructor(private _http: HttpClient) {}
 
-  constructor(private _http: HttpClient) { }
-
-  login(user:LoginModel): Observable<AuthModel>{
-    return this._http.post<AuthModel>(environment.apiUrl + 'auth/login' , user);
+  login(user: LoginModel): Observable<AuthModel> {
+    return this._http.post<AuthModel>(environment.apiUrl + 'auth/login', user);
   }
 
-  register(user:RegisterModel): Observable<AuthModel>{
-    return this._http.post<AuthModel>(environment.apiUrl + 'auth/register' , user);
+  register(user: RegisterModel): Observable<AuthModel> {
+    return this._http.post<AuthModel>(environment.apiUrl + 'auth/register', user);
   }
-
 }
