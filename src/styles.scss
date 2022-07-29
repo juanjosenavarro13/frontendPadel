@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+/* import the necessary Bootstrap files */
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.dropdown-item.active, .dropdown-item:active{
+  color: black;
+  background-color: #e9ecef;
+}
+
+.page-link.active, .active > .page-link{
+  background-color: #e9ecef;
+  border-color: #b6b7b8;
+}
