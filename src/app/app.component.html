@@ -1,7 +1,8 @@
 <div class="container">
   <div *ngIf="logeado">
-    logeado
+    <app-header></app-header>
     <router-outlet></router-outlet>
+    <app-footer></app-footer>
   </div>
 
   <div *ngIf="!logeado" class="pt-5 col-auto">
