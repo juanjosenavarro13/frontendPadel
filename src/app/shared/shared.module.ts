@@ -4,10 +4,11 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [SpinnerComponent, HomeComponent, HeaderComponent, FooterComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   exports: [SpinnerComponent, HomeComponent, HeaderComponent, FooterComponent],
 })
 export class SharedModule {}

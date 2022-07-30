@@ -1,4 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav
+  *ngIf="themes && themes.length > 0; else noThemes"
+  class="navbar navbar-expand-lg navbar-{{ themes[themeSelect - 1].secondary_color }} bg-{{
+    themes[themeSelect - 1].primary_color
+  }}">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button
@@ -41,13 +45,19 @@
         </li>
       </ul>
       <div class="d-flex">
-        <select class="form-select">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+        <app-spinner *ngIf="!loading || themeSelect === 0"></app-spinner>
+        <select
+          class="form-select"
+          *ngIf="loading && themeSelect !== 0"
+          [(ngModel)]="themeSelect"
+          (change)="changeTheme()">
+          <option *ngFor="let t of themes" value="{{ t.id }}">Color tema: {{ t.nombre }}</option>
         </select>
       </div>
     </div>
   </div>
 </nav>
+
+<ng-template #noThemes>
+  <app-spinner></app-spinner>
+</ng-template>
