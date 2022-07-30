@@ -12,6 +12,8 @@ export class AppComponent {
     this.authService.token$.subscribe(token => {
       if (token.access_token) {
         this.logeado = true;
+      } else {
+        this.logeado = false;
       }
     });
   }

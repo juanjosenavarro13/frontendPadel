@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { themeModel } from '../../models/themeModel';
 import { ThemeService } from '../../services/theme.service';
 
@@ -11,7 +13,7 @@ export class HeaderComponent implements OnInit {
   themes: themeModel[];
   themeSelect: number;
   loading: boolean = false;
-  constructor(private themeService: ThemeService) {
+  constructor(private themeService: ThemeService, private authService: AuthService, private router: Router) {
     this.themes = [];
     this.themeSelect = this.themeService.getThemeActual().id;
   }
@@ -32,5 +34,12 @@ export class HeaderComponent implements OnInit {
 
   changeTheme() {
     this.themeService.setThemeActual(this.themes[this.themeSelect - 1]);
+  }
+
+  logout() {
+    this.authService.logout().subscribe(data => {
+      this.authService.removeToken();
+      this.router.navigate(['/auth']);
+    });
   }
 }

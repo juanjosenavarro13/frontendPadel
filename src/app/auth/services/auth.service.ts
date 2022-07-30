@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LoginModel, TokenModel } from './../models/authModel';
 import { Injectable } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
@@ -34,5 +35,14 @@ export class AuthService {
   setToken(token: TokenModel) {
     localStorage.setItem('token', JSON.stringify(token));
     this.token.next(this.getTokenLocalstorage());
+  }
+
+  removeToken() {
+    localStorage.removeItem('token');
+    this.token.next(this.getTokenLocalstorage());
+  }
+
+  logout() {
+    return this._http.logout(this.token.value);
   }
 }

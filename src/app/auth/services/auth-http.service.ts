@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthModel, LoginModel, RegisterModel } from '../models/authModel';
+import { AuthModel, LoginModel, RegisterModel, TokenModel } from '../models/authModel';
 
 @Injectable({
   providedIn: 'root',
@@ -16,5 +16,14 @@ export class AuthHttpService {
 
   register(user: RegisterModel): Observable<AuthModel> {
     return this._http.post<AuthModel>(environment.apiUrl + 'auth/register', user);
+  }
+
+  logout(token: TokenModel) {
+    let bearer = `Bearer ${token.access_token}`;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: bearer,
+    });
+    return this._http.post(environment.apiUrl + 'auth/logout', {}, { headers: headers });
   }
 }
