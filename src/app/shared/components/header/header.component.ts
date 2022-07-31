@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { usuarioModel } from 'src/app/auth/models/authModel';
+import { rolModel, usuarioModel } from 'src/app/auth/models/authModel';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { configModel } from '../../models/configModel';
 import { themeModel } from '../../models/themeModel';
@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
   loadingConfig: boolean = false;
   config: configModel;
   usuario: usuarioModel;
+  rol: rolModel;
   constructor(
     private themeService: ThemeService,
     private authService: AuthService,
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
   ) {
     this.usuario = {} as usuarioModel;
     this.config = {} as configModel;
+    this.rol = {} as rolModel;
     this.themes = [];
     this.themeSelect = this.themeService.getThemeActual().id;
   }
@@ -35,6 +37,7 @@ export class HeaderComponent implements OnInit {
     this.getNombreApp();
     this.getThemes();
     this.getUsuario();
+    this.getRol();
     this.themeService.themeActual$.subscribe(data => {
       this.themeSelect = data.id;
     });
@@ -75,6 +78,12 @@ export class HeaderComponent implements OnInit {
     this.usuario = this.authService.getUsuario();
     this.authService.usuario$.subscribe(data => {
       this.usuario = data;
+    });
+  }
+  getRol() {
+    this.rol = this.authService.getRol();
+    this.authService.rol$.subscribe(data => {
+      this.rol = data;
     });
   }
 }

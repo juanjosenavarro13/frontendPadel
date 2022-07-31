@@ -47,7 +47,18 @@ export class usuarioModel {
     public apellidos: string,
     public fecha_nacimiento: Date,
     public direccion: string,
+    public rol_id: number,
     public telefono: string,
+    public created_at: Date,
+    public updated_at: Date
+  ) {}
+}
+
+export class rolModel {
+  constructor(
+    public id: number,
+    public nombre: string,
+    public nivel: number,
     public created_at: Date,
     public updated_at: Date
   ) {}

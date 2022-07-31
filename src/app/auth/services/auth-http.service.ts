@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthModel, LoginModel, registerModelSend, TokenModel, usuarioModel } from '../models/authModel';
+import { AuthModel, LoginModel, registerModelSend, rolModel, TokenModel, usuarioModel } from '../models/authModel';
 
 @Injectable({
   providedIn: 'root',
@@ -34,5 +34,9 @@ export class AuthHttpService {
       Authorization: bearer,
     });
     return this._http.post<usuarioModel>(environment.apiUrl + 'auth/me', {}, { headers: headers });
+  }
+
+  getRol(id: number): Observable<rolModel> {
+    return this._http.get<rolModel>(environment.apiUrl + 'rol/getRolById/' + id);
   }
 }

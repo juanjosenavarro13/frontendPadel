@@ -4,6 +4,7 @@ import {
   LoginModel,
   RegisterModel,
   registerModelSend,
+  rolModel,
   TokenModel,
   usuarioModel,
 } from './../models/authModel';
@@ -19,6 +20,8 @@ export class AuthService {
   token$ = this.token.asObservable();
   private usuario = new BehaviorSubject({} as usuarioModel);
   usuario$ = this.usuario.asObservable();
+  private rol = new BehaviorSubject({} as rolModel);
+  rol$ = this.rol.asObservable();
 
   constructor(private _http: AuthHttpService) {
     this.token.next(this.getTokenLocalstorage());
@@ -85,12 +88,29 @@ export class AuthService {
   }
 
   private me() {
-    this._http.me(this.token.value).subscribe(data => {
-      this.usuario.next(data);
-    });
+    this._http.me(this.token.value).subscribe(
+      data => {
+        this.usuario.next(data);
+        this.getRolHttp(data.rol_id);
+      },
+      error => {
+        this.logout();
+        this.removeToken();
+      }
+    );
   }
 
   getUsuario() {
     return this.usuario.value;
+  }
+
+  private getRolHttp(id: number) {
+    this._http.getRol(id).subscribe(data => {
+      this.rol.next(data);
+    });
+  }
+
+  getRol() {
+    return this.rol.value;
   }
 }

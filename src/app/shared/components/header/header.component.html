@@ -35,8 +35,9 @@
             {{ usuario.nombre }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><hr class="dropdown-divider" *ngIf="rol.nivel === 10" /></li>
+            <li><a class="dropdown-item fw-bold" href="#" *ngIf="rol.nivel === 10">ADMINISTRACION</a></li>
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#" (click)="logout()">Salir</a></li>
           </ul>
