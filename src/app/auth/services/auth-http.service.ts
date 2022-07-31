@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthModel, LoginModel, RegisterModel, TokenModel } from '../models/authModel';
+import { AuthModel, LoginModel, RegisterModel, registerModelSend, TokenModel } from '../models/authModel';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class AuthHttpService {
     return this._http.post<AuthModel>(environment.apiUrl + 'auth/login', user);
   }
 
-  register(user: RegisterModel): Observable<AuthModel> {
+  register(user: registerModelSend): Observable<AuthModel> {
     return this._http.post<AuthModel>(environment.apiUrl + 'auth/register', user);
   }
 

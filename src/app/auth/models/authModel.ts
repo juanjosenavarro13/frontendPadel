@@ -14,7 +14,10 @@ export class RegisterModel {
     public password_confirmation: string,
     public apellidos: string,
     public fecha_nacimiento: Date,
-    public direccion: string,
+    public codigo_postal: string,
+    public ciudad: string,
+    public calle: string,
+    public numero: string,
     public telefono: string
   ) {}
 }

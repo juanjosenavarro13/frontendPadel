@@ -113,6 +113,26 @@
         </div>
 
         <div class="col-auto">
+          <label for="nombre" class="col-form-label"><u>Nombre</u><small class="text-danger">*</small></label>
+        </div>
+        <div class="col-auto">
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{
+              'border-danger': nombre.invalid && nombre.touched
+            }"
+            [ngClass]="{ 'border-success': nombre.valid && nombre.touched }"
+            name="nombre"
+            ngModel
+            #nombre="ngModel"
+            required />
+        </div>
+        <div class="col-auto" *ngIf="nombre.invalid && nombre.touched">
+          <span class="form-text text-danger"> *El nombre es obligatorio.</span>
+        </div>
+
+        <div class="col-auto">
           <label for="apellidos" class="col-form-label"><u>Apellidos</u></label>
         </div>
         <div class="col-auto">
@@ -120,8 +140,19 @@
         </div>
 
         <!-- fecha de nacimiento -->
+        <div class="col-auto">
+          <label for="fecha_nacimiento" class="col-form-label"><u>Fecha de nacimiento</u></label>
+        </div>
+        <div class="col-auto">
+          <input
+            id="startDate"
+            class="form-control"
+            type="date"
+            name="fecha_nacimiento"
+            ngModel
+            #fecha_nacimiento="ngModel" />
+        </div>
 
-        <!-- direccion -->
         <div class="col-auto">
           <label for="telefono" class="col-form-label"><u>Direccion</u></label>
         </div>
