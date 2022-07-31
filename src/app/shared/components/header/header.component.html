@@ -1,5 +1,5 @@
 <nav
-  *ngIf="themes && themes.length > 0; else noThemes"
+  *ngIf="themes && themes.length > 0 && config.nombre_app !== undefined; else noThemes"
   class="navbar navbar-expand-lg navbar-{{ themes[themeSelect - 1].secondary_color }} bg-{{
     themes[themeSelect - 1].primary_color
   }}">

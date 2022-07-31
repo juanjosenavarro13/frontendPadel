@@ -48,6 +48,7 @@ export class usuarioModel {
     public fecha_nacimiento: Date,
     public direccion: string,
     public rol_id: number,
+    public activo: number,
     public telefono: string,
     public created_at: Date,
     public updated_at: Date

@@ -92,6 +92,10 @@ export class AuthService {
       data => {
         this.usuario.next(data);
         this.getRolHttp(data.rol_id);
+        if (data.activo == 0) {
+          this.removeToken();
+          this.logout();
+        }
       },
       error => {
         this.logout();
@@ -105,9 +109,13 @@ export class AuthService {
   }
 
   private getRolHttp(id: number) {
-    this._http.getRol(id).subscribe(data => {
-      this.rol.next(data);
-    });
+    if (id !== null) {
+      this._http.getRol(id).subscribe(data => {
+        this.rol.next(data);
+      });
+    } else {
+      this.rol.next({ id: 0, nombre: 'Sin rol' } as rolModel);
+    }
   }
 
   getRol() {
