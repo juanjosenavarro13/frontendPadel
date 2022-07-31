@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-xl-12">
         <div class="col-auto">
-          <label for="email" class="col-form-label">Email</label>
+          <label for="email" class="col-form-label"><u>Email</u> <small class="text-danger">*</small></label>
         </div>
         <div class="col-auto">
           <input
@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-auto">
-          <label for="password" class="col-form-label">Contraseña</label>
+          <label for="password" class="col-form-label"><u>Contraseña</u> <small class="text-danger">*</small></label>
         </div>
         <div class="col-auto">
           <input
@@ -72,7 +72,9 @@
         </div>
 
         <div class="col-auto">
-          <label for="password_confirmation" class="col-form-label">Confirmar contraseña</label>
+          <label for="password_confirmation" class="col-form-label"
+            ><u>Confirmar contraseña</u> <small class="text-danger">*</small></label
+          >
         </div>
         <div class="col-auto">
           <input
@@ -109,6 +111,57 @@
             *La contraseña es obligatoria y deben de ser identicas. 6 caracteres</span
           >
         </div>
+
+        <div class="col-auto">
+          <label for="apellidos" class="col-form-label"><u>Apellidos</u></label>
+        </div>
+        <div class="col-auto">
+          <input type="text" class="form-control" name="apellidos" ngModel #apellidos="ngModel" />
+        </div>
+
+        <!-- fecha de nacimiento -->
+
+        <!-- direccion -->
+        <div class="col-auto">
+          <label for="telefono" class="col-form-label"><u>Direccion</u></label>
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <label for="codigo_postal" class="col-form-label">Codigo Postal:</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="form-control" name="codigo_postal" ngModel #codigo_postal="ngModel" />
+          </div>
+          <div class="col-2">
+            <label for="ciudad" class="col-form-label">Ciudad:</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="form-control" name="ciudad" ngModel #ciudad="ngModel" />
+          </div>
+          <div class="col-2">
+            <label for="calle" class="col-form-label">Calle:</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="form-control" name="calle" ngModel #calle="ngModel" />
+          </div>
+          <div class="col-2">
+            <label for="numero" class="col-form-label">Numero:</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="form-control" name="numero" ngModel #numero="ngModel" />
+          </div>
+        </div>
+
+        <div class="col-auto">
+          <label for="telefono" class="col-form-label"><u>Telefono</u></label>
+        </div>
+        <div class="col-auto">
+          <input type="tel" class="form-control" name="telefono" ngModel #telefono="ngModel" pattern="[0-9]{9}" />
+        </div>
+        <div class="col-auto" *ngIf="telefono.invalid && telefono.touched">
+          <span class="form-text text-danger"> *Debe de ser un telefono valido</span>
+        </div>
+
         <div class="btn-group mt-3" role="group">
           <button type="submit" class="btn btn-dark" [disabled]="formRegister.invalid">Registrar</button>
           <a routerLink="/auth/login" class="btn btn-outline-dark">Iniciar Sesion</a>
