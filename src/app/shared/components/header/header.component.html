@@ -4,7 +4,8 @@
     themes[themeSelect - 1].primary_color
   }}">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <app-spinner *ngIf="!loadingConfig" [color]="themes[themeSelect - 1].primary_color"></app-spinner>
+    <a *ngIf="loadingConfig" class="navbar-brand" routerLink="/">{{ config.nombre_app }}</a>
     <button
       class="navbar-toggler"
       type="button"
