@@ -1,11 +1,11 @@
 <h1 class="text-center display-1">Registro</h1>
 <div class="row">
   <div *ngIf="registerSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Bienvenid@!</strong> has iniciado sesion correctamente.
+    <strong>Bienvenid@!</strong> te has registrado correctamente.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   <div *ngIf="registerError" class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Lo sentimos!</strong> no has podido iniciar sesion correctamente.
+    <strong>Lo sentimos!</strong> no has podido registrarte correctamente.
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   <form #formRegister="ngForm" (ngSubmit)="register(formRegister.value)">
