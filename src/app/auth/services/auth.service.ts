@@ -1,5 +1,12 @@
 import { Router } from '@angular/router';
-import { AuthModel, LoginModel, RegisterModel, registerModelSend, TokenModel } from './../models/authModel';
+import {
+  AuthModel,
+  LoginModel,
+  RegisterModel,
+  registerModelSend,
+  TokenModel,
+  usuarioModel,
+} from './../models/authModel';
 import { Injectable } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -10,9 +17,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class AuthService {
   private token = new BehaviorSubject({} as TokenModel);
   token$ = this.token.asObservable();
+  private usuario = new BehaviorSubject({} as usuarioModel);
+  usuario$ = this.usuario.asObservable();
 
   constructor(private _http: AuthHttpService) {
     this.token.next(this.getTokenLocalstorage());
+    if (this.token.value.access_token) {
+      this.me();
+    }
   }
 
   login(user: LoginModel) {
@@ -35,6 +47,7 @@ export class AuthService {
   setToken(token: TokenModel) {
     localStorage.setItem('token', JSON.stringify(token));
     this.token.next(this.getTokenLocalstorage());
+    this.me();
   }
 
   removeToken() {
@@ -56,11 +69,11 @@ export class AuthService {
       fecha_nacimiento: registerModel.fecha_nacimiento,
       direccion:
         registerModel.calle +
-        ' ' +
+        ', ' +
         registerModel.numero +
-        ' ' +
+        ', ' +
         registerModel.ciudad +
-        ' ' +
+        ', ' +
         registerModel.codigo_postal,
       telefono: registerModel.telefono,
     };
@@ -69,5 +82,15 @@ export class AuthService {
   register(user: RegisterModel): Observable<AuthModel> {
     let usuario = this.transformRegisterModel(user);
     return this._http.register(usuario);
+  }
+
+  private me() {
+    this._http.me(this.token.value).subscribe(data => {
+      this.usuario.next(data);
+    });
+  }
+
+  getUsuario() {
+    return this.usuario.value;
   }
 }

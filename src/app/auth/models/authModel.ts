@@ -38,3 +38,17 @@ export class registerModelSend {
 export class TokenModel {
   constructor(public access_token: string, public token_type: string, public expires_in: number) {}
 }
+
+export class usuarioModel {
+  constructor(
+    public id: number,
+    public email: string,
+    public nombre: string,
+    public apellidos: string,
+    public fecha_nacimiento: Date,
+    public direccion: string,
+    public telefono: string,
+    public created_at: Date,
+    public updated_at: Date
+  ) {}
+}

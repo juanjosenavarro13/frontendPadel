@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthModel, LoginModel, RegisterModel, registerModelSend, TokenModel } from '../models/authModel';
+import { AuthModel, LoginModel, registerModelSend, TokenModel, usuarioModel } from '../models/authModel';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +25,14 @@ export class AuthHttpService {
       Authorization: bearer,
     });
     return this._http.post(environment.apiUrl + 'auth/logout', {}, { headers: headers });
+  }
+
+  me(token: TokenModel): Observable<usuarioModel> {
+    let bearer = `Bearer ${token.access_token}`;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: bearer,
+    });
+    return this._http.post<usuarioModel>(environment.apiUrl + 'auth/me', {}, { headers: headers });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { usuarioModel } from 'src/app/auth/models/authModel';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { configModel } from '../../models/configModel';
 import { themeModel } from '../../models/themeModel';
@@ -17,12 +18,14 @@ export class HeaderComponent implements OnInit {
   loading: boolean = false;
   loadingConfig: boolean = false;
   config: configModel;
+  usuario: usuarioModel;
   constructor(
     private themeService: ThemeService,
     private authService: AuthService,
     private router: Router,
     private configService: ConfigurationService
   ) {
+    this.usuario = {} as usuarioModel;
     this.config = {} as configModel;
     this.themes = [];
     this.themeSelect = this.themeService.getThemeActual().id;
@@ -31,6 +34,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.getNombreApp();
     this.getThemes();
+    this.getUsuario();
     this.themeService.themeActual$.subscribe(data => {
       this.themeSelect = data.id;
     });
@@ -64,6 +68,13 @@ export class HeaderComponent implements OnInit {
     this.configService.config$.subscribe(data => {
       this.config = data;
       this.loadingConfig = true;
+    });
+  }
+
+  getUsuario() {
+    this.usuario = this.authService.getUsuario();
+    this.authService.usuario$.subscribe(data => {
+      this.usuario = data;
     });
   }
 }
