@@ -1,3 +1,4 @@
+<h1 class="text-center display-1">Registro</h1>
 <div class="row">
   <div *ngIf="registerSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>Bienvenid@!</strong> has iniciado sesion correctamente.
@@ -108,7 +109,10 @@
             *La contraseña es obligatoria y deben de ser identicas. 6 caracteres</span
           >
         </div>
-        <button type="submit" class="btn btn-primary mt-3" [disabled]="formRegister.invalid">Iniciar sesion</button>
+        <div class="btn-group mt-3" role="group">
+          <button type="submit" class="btn btn-dark" [disabled]="formRegister.invalid">Registrar</button>
+          <a routerLink="/auth/login" class="btn btn-outline-dark">Iniciar Sesion</a>
+        </div>
       </div>
     </div>
   </form>

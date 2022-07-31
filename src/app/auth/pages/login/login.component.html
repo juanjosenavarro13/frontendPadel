@@ -1,3 +1,4 @@
+<h1 class="text-center display-1">Iniciar Sesión</h1>
 <div class="row">
   <div *ngIf="loginSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>Bienvenid@!</strong> has iniciado sesion correctamente.
@@ -53,7 +54,10 @@
         <div class="col-auto" *ngIf="password.invalid && password.touched">
           <span class="form-text text-danger"> *La contraseña es obligatoria. 6 caracteres</span>
         </div>
-        <button type="submit" class="btn btn-primary mt-3" [disabled]="formLogin.invalid">Iniciar sesion</button>
+        <div class="btn-group mt-3" role="group">
+          <button type="submit" class="btn btn-dark" [disabled]="formLogin.invalid">Iniciar sesion</button>
+          <a routerLink="/auth/register" class="btn btn-outline-dark">Registrar</a>
+        </div>
       </div>
     </div>
   </form>
