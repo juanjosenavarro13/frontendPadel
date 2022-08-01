@@ -1,4 +1,4 @@
-import { pistaModel } from './../models/pistasModel';
+import { partidoModel, pistaModel } from './../models/pistasModel';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -12,5 +12,9 @@ export class PistasHttpService {
 
   getPistas(): Observable<pistaModel[]> {
     return this._http.get<pistaModel[]>(environment.apiUrl + 'pistas/getPistas');
+  }
+
+  getPartidos(fecha: string = '2022-08-01'): Observable<partidoModel[]> {
+    return this._http.get<partidoModel[]>(environment.apiUrl + 'partidos/byDate/' + fecha);
   }
 }

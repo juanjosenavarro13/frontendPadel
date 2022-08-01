@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { PistasHttpService } from './pistas-http.service';
 import { Injectable } from '@angular/core';
-import { pistaModel } from '../models/pistasModel';
+import { partidoModel, pistaModel } from '../models/pistasModel';
 
 @Injectable({
   providedIn: 'root',
@@ -11,5 +11,9 @@ export class PistasService {
 
   getPistas(): Observable<pistaModel[]> {
     return this.PistasHttpService.getPistas();
+  }
+
+  getPartidos(): Observable<partidoModel[]> {
+    return this.PistasHttpService.getPartidos();
   }
 }

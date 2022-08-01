@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { themeModel } from 'src/app/shared/models/themeModel';
 import { ThemeService } from 'src/app/shared/services/theme.service';
-import { pistaModel } from '../../models/pistasModel';
+import { partidoModel, pistaModel } from '../../models/pistasModel';
 import { PistasService } from '../../services/pistas.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { PistasService } from '../../services/pistas.service';
 })
 export class VerPistasComponent implements OnInit {
   pistas: pistaModel[] = [];
+  partidos: partidoModel[] = [];
   themeActual: themeModel = {} as themeModel;
   loading: boolean = false;
   constructor(private pistasService: PistasService, private themeService: ThemeService) {}
@@ -18,6 +19,7 @@ export class VerPistasComponent implements OnInit {
   ngOnInit(): void {
     this.getPistas();
     this.getTheme();
+    this.getPartidos();
   }
 
   getPistas() {
@@ -31,6 +33,12 @@ export class VerPistasComponent implements OnInit {
     this.themeActual = this.themeService.getThemeActual();
     this.themeService.themeActual$.subscribe(theme => {
       this.themeActual = theme;
+    });
+  }
+
+  getPartidos() {
+    this.pistasService.getPartidos().subscribe(data => {
+      this.partidos = data;
     });
   }
 }
