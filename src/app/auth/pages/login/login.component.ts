@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
         this.loginSuccess = true;
         this.loginError = false;
         this.authService.setToken(data);
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
+        window.location.reload();
       },
       error => {
         this.loginError = true;

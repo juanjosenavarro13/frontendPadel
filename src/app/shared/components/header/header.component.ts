@@ -55,16 +55,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout().subscribe(
-      data => {
-        this.authService.removeToken();
-        this.router.navigate(['/auth']);
-      },
-      error => {
-        this.authService.removeToken();
-        this.router.navigate(['/auth']);
-      }
-    );
+    this.authService.removeToken();
+    this.router.navigate(['/auth/login']);
   }
 
   getNombreApp() {

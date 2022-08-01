@@ -6,12 +6,12 @@ import { HomeComponent } from './shared/pages/home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'pistas', loadChildren: () => import('./pistas/pistas.module').then(m => m.PistasModule) },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
     canActivate: [AuthBlockLoginGuard],
   },
-  { path: 'pistas', loadChildren: () => import('./pistas/pistas.module').then(m => m.PistasModule) },
   { path: '**', redirectTo: '' },
 ];
 
