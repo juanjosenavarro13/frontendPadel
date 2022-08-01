@@ -13,7 +13,7 @@ export class PistasService {
     return this.PistasHttpService.getPistas();
   }
 
-  getPartidos(): Observable<partidoModel[]> {
-    return this.PistasHttpService.getPartidos();
+  getPartidos(fecha: string): Observable<partidoModel[]> {
+    return this.PistasHttpService.getPartidos(fecha);
   }
 }

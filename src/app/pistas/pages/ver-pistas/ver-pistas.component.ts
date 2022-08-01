@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { themeModel } from 'src/app/shared/models/themeModel';
 import { ThemeService } from 'src/app/shared/services/theme.service';
@@ -14,12 +15,17 @@ export class VerPistasComponent implements OnInit {
   partidos: partidoModel[] = [];
   themeActual: themeModel = {} as themeModel;
   loading: boolean = false;
-  constructor(private pistasService: PistasService, private themeService: ThemeService) {}
+  fechaActual: string;
+  loadingPartidos: boolean = false;
+  constructor(private pistasService: PistasService, private themeService: ThemeService, private datePipe: DatePipe) {
+    this.fechaActual = this.datePipe.transform(new Date(), 'YYY-MM-dd')!;
+  }
 
   ngOnInit(): void {
+    console.log(new Date());
     this.getPistas();
     this.getTheme();
-    this.getPartidos();
+    this.getPartidos(this.fechaActual);
   }
 
   getPistas() {
@@ -36,9 +42,16 @@ export class VerPistasComponent implements OnInit {
     });
   }
 
-  getPartidos() {
-    this.pistasService.getPartidos().subscribe(data => {
+  getPartidos(fecha: string) {
+    this.pistasService.getPartidos(fecha).subscribe(data => {
       this.partidos = data;
+      this.loadingPartidos = true;
     });
+  }
+
+  changeFecha(fecha: string) {
+    this.loadingPartidos = false;
+    this.fechaActual = fecha;
+    this.getPartidos(fecha);
   }
 }

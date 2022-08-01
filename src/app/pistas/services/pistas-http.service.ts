@@ -14,7 +14,7 @@ export class PistasHttpService {
     return this._http.get<pistaModel[]>(environment.apiUrl + 'pistas/getPistas');
   }
 
-  getPartidos(fecha: string = '2022-08-01'): Observable<partidoModel[]> {
+  getPartidos(fecha: string): Observable<partidoModel[]> {
     return this._http.get<partidoModel[]>(environment.apiUrl + 'partidos/byDate/' + fecha);
   }
 }

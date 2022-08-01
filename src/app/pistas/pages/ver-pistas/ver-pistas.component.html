@@ -1,31 +1,55 @@
 <app-spinner *ngIf="pistas === undefined || !loading"></app-spinner>
 <div class="row text-center justify-content-center" *ngIf="pistas !== undefined && loading">
-  <div class="col-12"><small class="text-muted">01/08/2022</small></div>
+  <div class="col-12">
+    <input
+      *ngIf="fechaActual !== '' && fechaActual !== undefined"
+      id="startDate"
+      class="form-control"
+      type="date"
+      name="fechaActual"
+      [(ngModel)]="fechaActual"
+      (change)="changeFecha(fechaActual)" />
+  </div>
   <div *ngFor="let pis of pistas" class="col-12">
-    <h3 class="display-3 text-{{ themeActual.primary_color }}">{{ pis.nombre }}</h3>
-    <table class="table table-responsive">
-      <thead>
-        <tr>
-          <th scope="col">Hora</th>
-          <th scope="col">Equipo 1</th>
-          <th scope="col">Equipo 2</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let par of partidos">
-          <th *ngIf="par.pista_id === pis.id" scope="row" class="text-{{ themeActual.primary_color }}">
-            {{ par.fecha | date: 'HH:mm' }}
-          </th>
-          <td *ngIf="par.pista_id === pis.id">
-            {{ par.jugador1.nombre }}
-            <font class="fw-bold">-</font>
-            {{ par.jugador2.nombre }}
-          </td>
-          <td *ngIf="par.pista_id === pis.id">
-            {{ par.jugador3.nombre }} <font class="fw-bold">-</font> {{ par.jugador4.nombre }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <app-spinner [color]="themeActual.primary_color" *ngIf="!loadingPartidos"></app-spinner>
+    <div *ngIf="loadingPartidos">
+      <h3 class="display-3 text-{{ themeActual.primary_color }}">{{ pis.nombre }}</h3>
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">Hora</th>
+            <th scope="col">Equipo 1</th>
+            <th scope="col">Equipo 2</th>
+            <th scope="col">Resultado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let par of partidos">
+            <th *ngIf="par.pista_id === pis.id" scope="row" class="text-{{ themeActual.primary_color }}">
+              {{ par.fecha | date: 'HH:mm' }}
+            </th>
+            <td
+              *ngIf="par.pista_id === pis.id"
+              [ngClass]="{
+                'border-dark fw-bold':
+                  par.resultado !== '0:0' && par.resultado.split(':')[0] >= par.resultado.split(':')[1]
+              }">
+              {{ par.jugador1.nombre }}
+              <font class="fw-bold">-</font>
+              {{ par.jugador2.nombre }}
+            </td>
+            <td
+              *ngIf="par.pista_id === pis.id"
+              [ngClass]="{
+                'border-dark fw-bold':
+                  par.resultado !== '0:0' && par.resultado.split(':')[0] <= par.resultado.split(':')[1]
+              }">
+              {{ par.jugador3.nombre }} <font class="fw-bold">-</font> {{ par.jugador4.nombre }}
+            </td>
+            <td *ngIf="par.pista_id === pis.id">{{ par.resultado }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
