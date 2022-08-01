@@ -23,7 +23,7 @@ export class AuthService {
   private rol = new BehaviorSubject({} as rolModel);
   rol$ = this.rol.asObservable();
 
-  constructor(private _http: AuthHttpService) {
+  constructor(private _http: AuthHttpService, private router: Router) {
     this.token.next(this.getTokenLocalstorage());
     if (this.token.value.access_token) {
       this.me();
@@ -100,6 +100,7 @@ export class AuthService {
       error => {
         this.logout();
         this.removeToken();
+        this.router.navigate(['/auth']);
       }
     );
   }

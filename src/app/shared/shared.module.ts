@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -8,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [SpinnerComponent, HomeComponent, HeaderComponent, FooterComponent],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   exports: [SpinnerComponent, HomeComponent, HeaderComponent, FooterComponent],
 })
 export class SharedModule {}
