@@ -1,0 +1,28 @@
+<app-spinner *ngIf="pistas === undefined || !loading"></app-spinner>
+<div class="row text-center" *ngIf="pistas !== undefined && loading">
+  <div class="col-12"><small class="text-muted">01/08/2022</small></div>
+  <div *ngFor="let p of pistas" class="col-auto">
+    <h3 class="display-3 text-{{ themeActual.primary_color }}">{{ p.nombre }}</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Hora</th>
+          <th scope="col">Equipo 1</th>
+          <th scope="col">Equipo 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">13:30</th>
+          <td>Mark - Otto</td>
+          <td>pepe - antonio</td>
+        </tr>
+        <tr>
+          <th scope="row">18:00</th>
+          <td>jesus - diego</td>
+          <td>pedro - manuel</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

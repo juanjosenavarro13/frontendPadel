@@ -11,6 +11,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
     canActivate: [AuthBlockLoginGuard],
   },
+  { path: 'pistas', loadChildren: () => import('./pistas/pistas.module').then(m => m.PistasModule) },
   { path: '**', redirectTo: '' },
 ];
 
