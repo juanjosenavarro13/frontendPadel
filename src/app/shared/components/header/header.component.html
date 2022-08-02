@@ -34,6 +34,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="pistas/semana" routerLinkActive="active">Semana</a>
         </li>
+        <li class="nav-item" *ngIf="rol.nivel === 10">
+          <a class="nav-link fw-bold" routerLink="admin" routerLinkActive="active">ADMINISTRACION</a>
+        </li>
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -46,12 +49,6 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Perfil</a></li>
-            <li><hr class="dropdown-divider" *ngIf="rol.nivel === 10" /></li>
-            <li>
-              <a class="dropdown-item fw-bold" routerLink="admin" routerLinkActive="active" *ngIf="rol.nivel === 10"
-                >ADMINISTRACION</a
-              >
-            </li>
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#" (click)="logout()">Salir</a></li>
           </ul>

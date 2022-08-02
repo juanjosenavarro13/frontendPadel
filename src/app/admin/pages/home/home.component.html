@@ -1,0 +1,8 @@
+<app-menu></app-menu>
+<div class="border border-top-0 p-3 text-center">
+  <app-spinner *ngIf="usuario.nombre === undefined && rol.nivel === undefined"></app-spinner>
+  <div *ngIf="usuario.nombre !== undefined && rol.nivel !== undefined">
+    <h3 class="display-3">Bienvenido {{ usuario.nombre }}</h3>
+    <p>Tienes nivel de permisos: {{ rol.nivel }}</p>
+  </div>
+</div>

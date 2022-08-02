@@ -22,7 +22,6 @@ export class VerPistasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(new Date());
     this.getPistas();
     this.getTheme();
     this.getPartidos(this.fechaActual);
