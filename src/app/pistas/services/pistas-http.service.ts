@@ -17,4 +17,8 @@ export class PistasHttpService {
   getPartidos(fecha: string): Observable<partidoModel[]> {
     return this._http.get<partidoModel[]>(environment.apiUrl + 'partidos/byDate/' + fecha);
   }
+
+  getPartidosSemana(fecha: string): Observable<partidoModel[]> {
+    return this._http.get<partidoModel[]>(environment.apiUrl + 'partidos/getPartidosSemana/' + fecha);
+  }
 }

@@ -16,4 +16,8 @@ export class PistasService {
   getPartidos(fecha: string): Observable<partidoModel[]> {
     return this.PistasHttpService.getPartidos(fecha);
   }
+
+  getPartidosSemana(fecha: string): Observable<partidoModel[]> {
+    return this.PistasHttpService.getPartidosSemana(fecha);
+  }
 }

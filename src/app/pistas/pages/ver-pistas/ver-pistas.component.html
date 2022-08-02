@@ -31,7 +31,7 @@
             <td
               *ngIf="par.pista_id === pis.id"
               [ngClass]="{
-                'border-dark fw-bold':
+                'fw-bold border-dark':
                   par.resultado !== '0:0' && par.resultado.split(':')[0] >= par.resultado.split(':')[1]
               }">
               {{ par.jugador1.nombre }}
@@ -41,7 +41,7 @@
             <td
               *ngIf="par.pista_id === pis.id"
               [ngClass]="{
-                'border-dark fw-bold':
+                'fw-bold border-dark':
                   par.resultado !== '0:0' && par.resultado.split(':')[0] <= par.resultado.split(':')[1]
               }">
               {{ par.jugador3.nombre }} <font class="fw-bold">-</font> {{ par.jugador4.nombre }}

@@ -18,6 +18,7 @@ export class partidoModel {
     public jugador3: usuarioModel,
     public jugador4: usuarioModel,
     public resultado: string,
+    public pista: pistaModel,
     public created_at: Date,
     public updated_at: Date
   ) {}
