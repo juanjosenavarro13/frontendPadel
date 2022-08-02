@@ -29,7 +29,10 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="pistas" routerLinkActive="active">Pistas</a>
+          <a class="nav-link" routerLink="pistas/hoy" routerLinkActive="active">Hoy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="pistas/semana" routerLinkActive="active">Semana</a>
         </li>
         <li class="nav-item dropdown">
           <a
@@ -44,7 +47,11 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="#">Perfil</a></li>
             <li><hr class="dropdown-divider" *ngIf="rol.nivel === 10" /></li>
-            <li><a class="dropdown-item fw-bold" href="#" *ngIf="rol.nivel === 10">ADMINISTRACION</a></li>
+            <li>
+              <a class="dropdown-item fw-bold" routerLink="admin" routerLinkActive="active" *ngIf="rol.nivel === 10"
+                >ADMINISTRACION</a
+              >
+            </li>
             <li><hr class="dropdown-divider" /></li>
             <li><a class="dropdown-item" href="#" (click)="logout()">Salir</a></li>
           </ul>

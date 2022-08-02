@@ -6,7 +6,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { HomeComponent } from './shared/pages/home/home.component';
 
 const routes: Routes = [
-  { path: '', component: VerPartidosSemanaComponent, canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'pistas', loadChildren: () => import('./pistas/pistas.module').then(m => m.PistasModule) },
   {
     path: 'auth',

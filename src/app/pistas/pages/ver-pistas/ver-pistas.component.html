@@ -1,4 +1,4 @@
-<app-spinner *ngIf="pistas === undefined || !loading"></app-spinner>
+<app-spinner *ngIf="pistas === undefined || !loading" [color]="themeActual.primary_color"></app-spinner>
 <div class="row text-center justify-content-center" *ngIf="pistas !== undefined && loading">
   <div class="col-12">
     <input

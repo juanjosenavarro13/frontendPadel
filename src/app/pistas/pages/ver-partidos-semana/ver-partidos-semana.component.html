@@ -1,5 +1,5 @@
-<app-spinner *ngIf="!loading"></app-spinner>
-<h1 class="display-1 text-center" *ngIf="loading">Pistas esta semana</h1>
+<app-spinner [color]="themeActual.primary_color" *ngIf="!loading"></app-spinner>
+<h1 class="display-1 text-center text-{{ themeActual.primary_color }}" *ngIf="loading">Pistas esta semana</h1>
 <table class="table" *ngIf="loading">
   <thead>
     <tr>
@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of partidos">
-      <th scope="row">
+      <th scope="row" class="text-{{ themeActual.primary_color }}">
         {{ p.pista.nombre }}
       </th>
       <td>{{ p.fecha | date: 'dd-MM-YYYY HH:mm' }}</td>
