@@ -1,16 +1,14 @@
 <app-menu></app-menu>
 <app-spinner [color]="themeActual.primary_color" *ngIf="usuarios.data === undefined || !loading"></app-spinner>
 <div class="border border-top-0 p-3" *ngIf="usuarios.data !== undefined && loading">
-  <div class="input-group input-group-sm mb-3">
-    <span class="input-group-text">Buscar Usuario</span>
-    <input type="text" class="form-control" list="usuariosSearch" name="userSearch" ngModel #userSearch="ngModel" />
-    <button
-      class="btn btn-outline-{{ themeActual.primary_color }}"
-      type="button"
-      (click)="buscarUsuario(userSearch.value)">
-      Buscar
-    </button>
-  </div>
+  <input
+    class="form-control"
+    list="usuariosSearch"
+    placeholder="Buscar usuario"
+    name="userSearch"
+    ngModel
+    #userSearch="ngModel"
+    (change)="buscarUsuario(userSearch.value)" />
   <datalist id="usuariosSearch">
     <option *ngFor="let us of usuariosSearch" value="{{ us.id }}">{{ us.nombre }} {{ us.apellidos }}</option>
   </datalist>
