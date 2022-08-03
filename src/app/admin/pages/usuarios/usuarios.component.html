@@ -1,32 +1,95 @@
 <app-menu></app-menu>
-<div class="border border-top-0 p-3">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
-    </tbody>
-  </table>
+<app-spinner [color]="themeActual.primary_color" *ngIf="usuarios.data === undefined || !loading"></app-spinner>
+<div class="border border-top-0 p-3" *ngIf="usuarios.data !== undefined && loading">
+  <div class="input-group input-group-sm mb-3">
+    <span class="input-group-text">Buscar Usuario</span>
+    <input type="text" class="form-control" list="usuariosSearch" name="userSearch" ngModel #userSearch="ngModel" />
+    <button
+      class="btn btn-outline-{{ themeActual.primary_color }}"
+      type="button"
+      (click)="buscarUsuario(userSearch.value)">
+      Buscar
+    </button>
+  </div>
+  <datalist id="usuariosSearch">
+    <option *ngFor="let us of usuariosSearch" value="{{ us.id }}">{{ us.nombre }} {{ us.apellidos }}</option>
+  </datalist>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre y apellidos</th>
+          <th scope="col">Rol</th>
+          <th scope="col">Activo</th>
+          <th scope="col">Fecha registro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of usuarios.data">
+          <th scope="row">{{ u.id }}</th>
+          <td>
+            <a class="text-{{ themeActual.primary_color }}" routerLink="/perfil/{{ u.id }}"
+              >{{ u.nombre }} {{ u.apellidos }}</a
+            >
+          </td>
+          <td
+            [ngClass]="{
+              'text-danger': u.rol === null,
+              'text-primary': u.rol === 'Administrador',
+              'text-success': u.rol === 'Moderador'
+            }">
+            {{ u.rol || 'Sin Rol' }}
+          </td>
+          <td
+            [ngClass]="{
+              'text-danger': u.activo === 0
+            }">
+            {{ u.activo ? 'Activo' : 'Inactivo' }}
+          </td>
+          <td>{{ u.created_at | date: 'dd-MM-YYYY' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a
+          class="page-link text-{{ themeActual.primary_color }} btn"
+          (click)="changePage('primera')"
+          *ngIf="usuarios.current_page !== 1"
+          >Primera</a
+        >
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link text-{{ themeActual.primary_color }} btn"
+          (click)="changePage('anterior')"
+          *ngIf="usuarios.prev_page_url"
+          >Anterior</a
+        >
+      </li>
+      <li class="page-item active">
+        <a class="page-link text-{{ themeActual.primary_color }} btn">{{ usuarios.current_page }}</a>
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link text-{{ themeActual.primary_color }} btn"
+          (click)="changePage('siguiente')"
+          *ngIf="usuarios.next_page_url"
+          >Siguiente</a
+        >
+      </li>
+      <li class="page-item">
+        <a
+          class="page-link text-{{ themeActual.primary_color }} btn"
+          (click)="changePage('ultima')"
+          *ngIf="usuarios.last_page !== usuarios.current_page"
+          >Ultima</a
+        >
+      </li>
+    </ul>
+  </nav>
 </div>

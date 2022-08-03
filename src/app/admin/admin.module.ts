@@ -8,9 +8,10 @@ import { SharedModule } from '../shared/shared.module';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { PistasComponent } from './pages/pistas/pistas.component';
 import { PartidosComponent } from './pages/partidos/partidos.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MenuComponent, HomeComponent, UsuariosComponent, PistasComponent, PartidosComponent],
-  imports: [CommonModule, AdminRoutingModule, SharedModule],
+  imports: [CommonModule, AdminRoutingModule, SharedModule, FormsModule],
 })
 export class AdminModule {}

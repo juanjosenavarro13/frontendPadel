@@ -18,6 +18,11 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
     canActivate: [AuthBlockLoginGuard],
   },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then(m => m.PerfilModule),
+    canActivate: [AuthGuard],
+  },
   { path: '**', redirectTo: '' },
 ];
 

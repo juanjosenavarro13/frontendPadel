@@ -1,3 +1,4 @@
+import { usuarioModel } from 'src/app/auth/models/authModel';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -19,7 +20,19 @@ export class UsuariosHttpService {
     });
   }
 
-  getUsuarios(): Observable<usuarioPaginateModel> {
+  getUsuarios(page: string = null!): Observable<usuarioPaginateModel> {
     return this.http.get<usuarioPaginateModel>(environment.apiUrl + 'usuarios/getUsuarios', { headers: this.headers });
+  }
+
+  getUsuariosPaginate(page: string): Observable<usuarioPaginateModel> {
+    return this.http.get<usuarioPaginateModel>(page, {
+      headers: this.headers,
+    });
+  }
+
+  searchUsuarios(): Observable<usuarioModel[]> {
+    return this.http.get<usuarioModel[]>(environment.apiUrl + 'usuarios/searchUsuarios', {
+      headers: this.headers,
+    });
   }
 }
