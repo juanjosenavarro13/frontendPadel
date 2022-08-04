@@ -13,4 +13,8 @@ export class PistasHttpService {
   getPistas(): Observable<pistaModel[]> {
     return this.http.get<pistaModel[]>(environment.apiUrl + 'pistas/getPistas');
   }
+
+  getPistaById(id: number): Observable<pistaModel> {
+    return this.http.get<pistaModel>(environment.apiUrl + 'pistas/getPistaById/' + id);
+  }
 }

@@ -9,9 +9,10 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { PistasComponent } from './pages/pistas/pistas.component';
 import { PartidosComponent } from './pages/partidos/partidos.component';
 import { FormsModule } from '@angular/forms';
+import { PistasEditarComponent } from './pages/pistas-editar/pistas-editar.component';
 
 @NgModule({
-  declarations: [MenuComponent, HomeComponent, UsuariosComponent, PistasComponent, PartidosComponent],
+  declarations: [MenuComponent, HomeComponent, UsuariosComponent, PistasComponent, PartidosComponent, PistasEditarComponent],
   imports: [CommonModule, AdminRoutingModule, SharedModule, FormsModule],
 })
 export class AdminModule {}

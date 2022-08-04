@@ -11,4 +11,8 @@ export class PistasService {
   getPistas(): Observable<pistaModel[]> {
     return this.pistaService.getPistas();
   }
+
+  getPistaById(id: number): Observable<pistaModel> {
+    return this.pistaService.getPistaById(id);
+  }
 }
