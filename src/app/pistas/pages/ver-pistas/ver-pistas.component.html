@@ -10,10 +10,10 @@
       [(ngModel)]="fechaActual"
       (change)="changeFecha(fechaActual)" />
   </div>
-  <div *ngFor="let pis of pistas" class="col-12">
+  <div *ngFor="let pis of pistas" class="col-12 mb-5">
     <app-spinner [color]="themeActual.primary_color" *ngIf="!loadingPartidos"></app-spinner>
     <div *ngIf="loadingPartidos">
-      <h3 class="display-3 text-{{ themeActual.primary_color }}">{{ pis.nombre }}</h3>
+      <h5 class="display-5 mb-0 pb-0 mt-3 text-{{ themeActual.primary_color }}">{{ pis.nombre }}</h5>
       <table class="table table-responsive">
         <thead>
           <tr>
