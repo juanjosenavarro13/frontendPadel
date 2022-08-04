@@ -1,0 +1,38 @@
+<app-menu></app-menu>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Fecha creación</th>
+      <th scope="col">Ultima actualización</th>
+      <th scope="col">Accion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">{{ pista.id }}</td>
+      <td *ngIf="!edit">{{ pista.nombre }}</td>
+      <td *ngIf="edit">
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="pista.nombre" required />
+      </td>
+      <td>{{ pista.created_at | date: 'dd-MM-YYYY' }}</td>
+      <td>{{ pista.updated_at | date: 'dd-MM-YYYY' }}</td>
+      <td>
+        <div class="btn-group" role="group">
+          <button *ngIf="!edit" type="button" class="btn btn-dark" (click)="changeEditMode()">Editar</button>
+          <button
+            *ngIf="edit"
+            type="button"
+            class="btn btn-outline-dark"
+            (click)="save()"
+            [disabled]="pista.nombre === ''">
+            Guardar
+          </button>
+          <button type="button" class="btn btn-danger" (click)="delete()">Eliminar</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
