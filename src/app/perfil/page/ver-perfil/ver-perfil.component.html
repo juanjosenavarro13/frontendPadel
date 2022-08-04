@@ -1,1 +1,117 @@
-<p>ver-perfil works!</p>
+<app-spinner *ngIf="usuario.activo === undefined"></app-spinner>
+
+<form
+  class="row text-center"
+  *ngIf="usuario.activo !== undefined"
+  #formPerfil="ngForm"
+  (ngSubmit)="save(formPerfil.value)">
+  <input type="hidden" name="id" [(ngModel)]="usuario.id" />
+  <div class="form-floating mb-3 col-6">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nombre"
+      name="nombre"
+      [ngClass]="{ 'border-danger': usuario.nombre === '' }"
+      [(ngModel)]="usuario.nombre"
+      [(ngModel)]="usuario.nombre"
+      [disabled]="!editMode"
+      required />
+    <label>Nombre</label>
+  </div>
+  <div class="form-floating mb-3 col-6">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Apellidos"
+      name="apellidos"
+      [(ngModel)]="usuario.apellidos"
+      [disabled]="!editMode" />
+    <label>Apellidos</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="rol.nivel === 10 || idVisita === id">
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      [(ngModel)]="usuario.email"
+      [ngClass]="{ 'border-danger': usuario.email === '' }"
+      [disabled]="!editMode"
+      required
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+    <label>Email</label>
+  </div>
+  <div class="form-floating mb-3 col-6">
+    <input
+      type="date"
+      class="form-control"
+      name="fecha_nacimiento"
+      [(ngModel)]="usuario.fecha_nacimiento"
+      [disabled]="!editMode" />
+    <label>Fecha de nacimiento</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="(rol.nivel === 10 && !editMode) || (idVisita === id && !editMode)">
+    <input type="text" class="form-control" name="direccion" [(ngModel)]="usuario.direccion" [disabled]="!editMode" />
+    <label>Direccion</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="(rol.nivel === 10 && editMode) || (idVisita === id && editMode)">
+    <input type="text" class="form-control" name="ciudad" [(ngModel)]="usuario.ciudad" />
+    <label>Ciudad</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="(rol.nivel === 10 && editMode) || (idVisita === id && editMode)">
+    <input type="text" class="form-control" name="calle" [(ngModel)]="usuario.calle" />
+    <label>Calle</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="(rol.nivel === 10 && editMode) || (idVisita === id && editMode)">
+    <input type="text" class="form-control" name="codigo_postal" [(ngModel)]="usuario.codigo_postal" />
+    <label>Codigo postal</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="(rol.nivel === 10 && editMode) || (idVisita === id && editMode)">
+    <input type="text" class="form-control" name="numero" [(ngModel)]="usuario.numero" />
+    <label>Numero vivienda</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="rol.nivel === 10 || idVisita === id">
+    <input type="text" class="form-control" name="telefono" [(ngModel)]="usuario.telefono" [disabled]="!editMode" />
+    <label>Telefono</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="!editMode">
+    <input
+      type="text"
+      class="form-control"
+      value="{{ usuario.activo ? 'Activo' : 'Inactivo' }}"
+      [disabled]="!editMode" />
+    <label>Estado del usuario</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="editMode">
+    <select class="form-select form-select-sm" name="activo" [(ngModel)]="usuario.activo">
+      <option selected value="{{ usuario.activo }}">Actual: {{ usuario.activo ? 'Activo' : 'Inactivo' }}</option>
+      <option value="1">Activo</option>
+      <option value="0">Inactivo</option>
+    </select>
+    <label>Estado del usuario</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="(rol.nivel === 10 && !editMode) || (idVisita === id && !editMode)">
+    <input type="text" class="form-control" value="{{ usuario.rol }}" [disabled]="!editMode" />
+    <label>Rol</label>
+  </div>
+  <div class="col-6">
+    <button
+      class="btn btn-{{ themeActual.primary_color }}"
+      type="button"
+      *ngIf="(rol.nivel === 10 && !editMode) || (idVisita === id && !editMode)"
+      (click)="changeEditMode()">
+      Editar
+    </button>
+    <button
+      class="btn btn-{{ themeActual.primary_color }}"
+      *ngIf="editMode"
+      type="submit"
+      [disabled]="formPerfil.invalid">
+      Guardar
+    </button>
+  </div>
+  <div class="col-6 text-muted text-center">
+    <p>Ultima actualización el: {{ usuario.updated_at | date: 'dd/MM/yyyy HH:mm' }}</p>
+    <p>Registrado el: {{ usuario.created_at | date: 'dd/MM/yyyy HH:mm' }}</p>
+  </div>
+</form>

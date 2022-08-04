@@ -56,6 +56,27 @@ export class usuarioModel {
   ) {}
 }
 
+export class usuarioUpdateModel {
+  constructor(
+    public id: number,
+    public email: string,
+    public nombre: string,
+    public apellidos: string,
+    public fecha_nacimiento: Date,
+    public direccion: string,
+    public rol_id: number,
+    public rol: string,
+    public activo: number,
+    public telefono: string,
+    public created_at: Date,
+    public updated_at: Date,
+    public calle?: string,
+    public numero?: string,
+    public codigo_postal?: string,
+    public ciudad?: string
+  ) {}
+}
+
 export class rolModel {
   constructor(
     public id: number,

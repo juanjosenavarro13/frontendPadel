@@ -7,6 +7,7 @@ import {
   rolModel,
   TokenModel,
   usuarioModel,
+  usuarioUpdateModel,
 } from './../models/authModel';
 import { Injectable } from '@angular/core';
 import { AuthHttpService } from './auth-http.service';
@@ -71,14 +72,34 @@ export class AuthService {
       apellidos: registerModel.apellidos,
       fecha_nacimiento: registerModel.fecha_nacimiento,
       direccion:
-        registerModel.calle +
+        registerModel.calle?.trim() +
         ', ' +
-        registerModel.numero +
+        registerModel.numero?.trim() +
         ', ' +
-        registerModel.ciudad +
+        registerModel.ciudad?.trim() +
         ', ' +
-        registerModel.codigo_postal,
+        registerModel.codigo_postal?.trim(),
       telefono: registerModel.telefono,
+    };
+  }
+
+  transformUpdateUserModel(user: usuarioUpdateModel) {
+    return {
+      id: user.id,
+      activo: user.activo,
+      email: user.email,
+      nombre: user.nombre,
+      apellidos: user.apellidos,
+      fecha_nacimiento: user.fecha_nacimiento,
+      direccion:
+        user.calle?.trim() +
+        ', ' +
+        user.numero?.trim() +
+        ', ' +
+        user.ciudad?.trim() +
+        ', ' +
+        user.codigo_postal?.trim(),
+      telefono: user.telefono,
     };
   }
 
@@ -87,7 +108,7 @@ export class AuthService {
     return this._http.register(usuario);
   }
 
-  private me() {
+  me() {
     this._http.me(this.token.value).subscribe(
       data => {
         this.usuario.next(data);
