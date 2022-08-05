@@ -17,7 +17,6 @@ export class PistasComponent implements OnInit {
 
   private getPistas() {
     this.pistasService.getPistas().subscribe(data => {
-      console.log(data);
       this.pistas = data;
     });
   }

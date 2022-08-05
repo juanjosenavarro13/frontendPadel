@@ -17,4 +17,12 @@ export class PistasHttpService {
   getPistaById(id: number): Observable<pistaModel> {
     return this.http.get<pistaModel>(environment.apiUrl + 'pistas/getPistaById/' + id);
   }
+
+  updatePista(pista: pistaModel, id: number): Observable<pistaModel> {
+    return this.http.put<pistaModel>(environment.apiUrl + 'pistas/updatePista/' + id, pista);
+  }
+
+  deletePista(id: number): Observable<pistaModel> {
+    return this.http.delete<pistaModel>(environment.apiUrl + 'pistas/deletePista/' + id);
+  }
 }
