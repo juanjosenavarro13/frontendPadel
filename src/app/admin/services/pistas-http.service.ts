@@ -21,4 +21,8 @@ export class PistasHttpService {
   updatePista(pista: pistaModel, id: number): Observable<pistaModel> {
     return this.http.put<pistaModel>(environment.apiUrl + 'pistas/updatePista/' + id, pista);
   }
+
+  deletePista(id: number): Observable<pistaModel> {
+    return this.http.delete<pistaModel>(environment.apiUrl + 'pistas/deletePista/' + id);
+  }
 }

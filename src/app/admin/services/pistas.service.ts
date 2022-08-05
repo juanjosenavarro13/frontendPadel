@@ -19,4 +19,7 @@ export class PistasService {
   updatePista(pista: pistaModel, id: number): Observable<pistaModel> {
     return this.pistaService.updatePista(pista, id);
   }
+  deletePista(id: number): Observable<pistaModel> {
+    return this.pistaService.deletePista(id);
+  }
 }
