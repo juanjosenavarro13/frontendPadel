@@ -91,7 +91,18 @@
     <label>Estado del usuario</label>
   </div>
   <div class="form-floating mb-3 col-6" *ngIf="(rol.nivel === 10 && !editMode) || (idVisita === id && !editMode)">
-    <input type="text" class="form-control" value="{{ usuario.rol }}" [disabled]="!editMode" />
+    <input
+      type="text"
+      class="form-control"
+      value="{{ usuario.rol ? usuario.rol : 'Sin rol' }}"
+      [disabled]="!editMode" />
+    <label>Rol</label>
+  </div>
+  <div class="form-floating mb-3 col-6" *ngIf="rol.nivel === 10 && editMode">
+    <select class="form-select" [(ngModel)]="usuario.rol_id" name="rol_id">
+      <option selected value="{{ usuario.rol_id }}">Actual: {{ usuario.rol ? usuario.rol : 'Sin rol' }}</option>
+      <option value="{{ r.id }}" *ngFor="let r of roles">{{ r.nombre }}</option>
+    </select>
     <label>Rol</label>
   </div>
   <div class="col-6">
