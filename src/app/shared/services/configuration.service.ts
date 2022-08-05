@@ -22,4 +22,8 @@ export class ConfigurationService {
   getConfig() {
     return this.config.getValue();
   }
+
+  getStats() {
+    return this.configService.getStats();
+  }
 }

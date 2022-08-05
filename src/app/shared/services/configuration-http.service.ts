@@ -13,4 +13,8 @@ export class ConfigurationHttpService {
   getConfiguration(): Observable<configModel> {
     return this._http.get<configModel>(environment.apiUrl + 'config/get');
   }
+
+  getStats() {
+    return this._http.get<any>(environment.apiUrl + 'config/stats');
+  }
 }
