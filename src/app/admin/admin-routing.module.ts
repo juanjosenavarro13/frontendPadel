@@ -5,6 +5,7 @@ import { PartidosComponent } from './pages/partidos/partidos.component';
 import { PistasCrearComponent } from './pages/pistas-crear/pistas-crear.component';
 import { PistasEditarComponent } from './pages/pistas-editar/pistas-editar.component';
 import { PistasComponent } from './pages/pistas/pistas.component';
+import { RolesComponent } from './pages/roles/roles.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'pistas', component: PistasComponent },
   { path: 'pistas/editar/:id', component: PistasEditarComponent },
   { path: 'pistas/crear', component: PistasCrearComponent },
+  { path: 'roles', component: RolesComponent },
   { path: 'partidos', component: PartidosComponent },
   { path: '**', redirectTo: '' },
 ];

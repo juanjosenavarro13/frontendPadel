@@ -28,7 +28,6 @@ export class VerPartidosSemanaComponent implements OnInit {
   private getPartidos() {
     this.PistasService.getPartidosSemana(this.fechaActual).subscribe(data => {
       this.partidos = data;
-      console.log(data);
       this.loading = true;
     });
   }

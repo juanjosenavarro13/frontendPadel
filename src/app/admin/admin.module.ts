@@ -11,6 +11,7 @@ import { PartidosComponent } from './pages/partidos/partidos.component';
 import { FormsModule } from '@angular/forms';
 import { PistasEditarComponent } from './pages/pistas-editar/pistas-editar.component';
 import { PistasCrearComponent } from './pages/pistas-crear/pistas-crear.component';
+import { RolesComponent } from './pages/roles/roles.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PistasCrearComponent } from './pages/pistas-crear/pistas-crear.componen
     PartidosComponent,
     PistasEditarComponent,
     PistasCrearComponent,
+    RolesComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule, FormsModule],
 })
