@@ -14,7 +14,7 @@
       <tr *ngFor="let p of pistas">
         <th scope="row">{{ p.id }}</th>
         <td>
-          <a class="text-dark" routerLink="/admin/pistas/{{ p.id }}">{{ p.nombre }}</a>
+          <a class="text-dark" routerLink="/admin/pistas/editar/{{ p.id }}">{{ p.nombre }}</a>
         </td>
         <td>{{ p.created_at | date: 'dd-MM-YYYY' }}</td>
         <td>{{ p.updated_at | date: 'dd-MM-YYYY' }}</td>

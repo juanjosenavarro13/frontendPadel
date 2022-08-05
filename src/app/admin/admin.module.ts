@@ -10,6 +10,7 @@ import { PistasComponent } from './pages/pistas/pistas.component';
 import { PartidosComponent } from './pages/partidos/partidos.component';
 import { FormsModule } from '@angular/forms';
 import { PistasEditarComponent } from './pages/pistas-editar/pistas-editar.component';
+import { PistasCrearComponent } from './pages/pistas-crear/pistas-crear.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PistasEditarComponent } from './pages/pistas-editar/pistas-editar.compo
     PistasComponent,
     PartidosComponent,
     PistasEditarComponent,
+    PistasCrearComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule, FormsModule],
 })
