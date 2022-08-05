@@ -31,7 +31,9 @@ export class PistasEditarComponent implements OnInit {
     this.edit = !this.edit;
   }
   save() {
-    console.log(this.pista.nombre);
-    this.changeEditMode();
+    this.pistaService.updatePista(this.pista, this.id).subscribe(data => {
+      this.changeEditMode();
+      this.getPista(this.id);
+    });
   }
 }
