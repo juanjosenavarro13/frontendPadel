@@ -1,1 +1,9 @@
-HOME
+<app-spinner *ngIf="stats === undefined"></app-spinner>
+<div class="text-center" *ngIf="stats !== undefined">
+  <h5 class="display-5">Bienvenid@ !!</h5>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Tenemos un total de {{ stats.pistas }} pistas.</li>
+    <li class="list-group-item">con un total de {{ stats.jugadores }} jugadores</li>
+    <li class="list-group-item">y un total de {{ stats.partidos }} partidos totales</li>
+  </ul>
+</div>

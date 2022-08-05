@@ -1,3 +1,4 @@
+import { ConfigurationService } from './../../services/configuration.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  stats: any;
+  constructor(private ConfigurationService: ConfigurationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getstats();
+  }
+
+  getstats() {
+    this.ConfigurationService.getStats().subscribe(data => {
+      this.stats = data;
+    });
+  }
 }
