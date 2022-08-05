@@ -1,3 +1,4 @@
+import { rolModel } from './../../auth/models/authModel';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -25,5 +26,9 @@ export class PerfilHttpService {
 
   updatePerfil(user: usuarioUpdateModel) {
     return this.http.put(environment.apiUrl + 'usuarios/updateUser', user, { headers: this.headers });
+  }
+
+  getRoles(): Observable<rolModel[]> {
+    return this.http.get<rolModel[]>(environment.apiUrl + 'rol/getRoles');
   }
 }

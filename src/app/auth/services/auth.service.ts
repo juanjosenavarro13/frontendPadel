@@ -91,6 +91,7 @@ export class AuthService {
       nombre: user.nombre,
       apellidos: user.apellidos,
       fecha_nacimiento: user.fecha_nacimiento,
+      rol_id: user.rol_id,
       direccion:
         user.calle?.trim() +
         ', ' +

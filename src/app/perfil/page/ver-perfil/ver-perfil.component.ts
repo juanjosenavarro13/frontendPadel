@@ -18,6 +18,7 @@ export class VerPerfilComponent implements OnInit {
   rol: rolModel = {} as rolModel;
   themeActual: themeModel = {} as themeModel;
   idVisita: number = 0;
+  roles: rolModel[] = [];
   constructor(
     private rutaActiva: ActivatedRoute,
     private perfilservice: PerfilService,
@@ -37,6 +38,7 @@ export class VerPerfilComponent implements OnInit {
     this.getIdVisita();
     this.getRol();
     this.getTheme();
+    this.getRoles();
   }
 
   getUser(id: number) {
@@ -44,8 +46,8 @@ export class VerPerfilComponent implements OnInit {
       this.usuario = data;
       this.usuario.calle = data.direccion?.split(',')[0] || '';
       this.usuario.numero = data.direccion?.split(',')[1] || '';
-      this.usuario.codigo_postal = data.direccion?.split(',')[2] || '';
-      this.usuario.ciudad = data.direccion?.split(',')[3] || '';
+      this.usuario.ciudad = data.direccion?.split(',')[2] || '';
+      this.usuario.codigo_postal = data.direccion?.split(',')[3] || '';
       if (this.usuario.email === undefined) {
         this.router.navigate(['/']);
       }
@@ -88,6 +90,12 @@ export class VerPerfilComponent implements OnInit {
     this.idVisita = this.authservice.getUsuario().id;
     this.authservice.usuario$.subscribe(data => {
       this.idVisita = data.id;
+    });
+  }
+
+  getRoles() {
+    this.perfilservice.getRoles().subscribe(data => {
+      this.roles = data;
     });
   }
 }

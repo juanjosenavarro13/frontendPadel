@@ -1,3 +1,4 @@
+import { rolModel } from './../../auth/models/authModel';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { PerfilHttpService } from './perfil-http.service';
@@ -15,5 +16,9 @@ export class PerfilService {
 
   updatePerfil(user: any) {
     return this.perfilService.updatePerfil(user);
+  }
+
+  getRoles(): Observable<rolModel[]> {
+    return this.perfilService.getRoles();
   }
 }

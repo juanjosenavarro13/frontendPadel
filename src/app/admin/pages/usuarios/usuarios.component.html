@@ -28,9 +28,7 @@
         <tr *ngFor="let u of usuarios.data">
           <th scope="row">{{ u.id }}</th>
           <td>
-            <a class="text-{{ themeActual.primary_color }}" routerLink="/perfil/{{ u.id }}"
-              >{{ u.nombre }} {{ u.apellidos }}</a
-            >
+            <a class="text-dark" routerLink="/perfil/{{ u.id }}">{{ u.nombre }} {{ u.apellidos }}</a>
           </td>
           <td
             [ngClass]="{
@@ -54,35 +52,24 @@
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       <li class="page-item">
-        <a
-          class="page-link text-{{ themeActual.primary_color }} btn"
-          (click)="changePage('primera')"
-          *ngIf="usuarios.current_page !== 1"
+        <a class="page-link text-dark btn" (click)="changePage('primera')" *ngIf="usuarios.current_page !== 1"
           >Primera</a
         >
       </li>
       <li class="page-item">
-        <a
-          class="page-link text-{{ themeActual.primary_color }} btn"
-          (click)="changePage('anterior')"
-          *ngIf="usuarios.prev_page_url"
-          >Anterior</a
-        >
+        <a class="page-link text-dark btn" (click)="changePage('anterior')" *ngIf="usuarios.prev_page_url">Anterior</a>
       </li>
       <li class="page-item active">
-        <a class="page-link text-{{ themeActual.primary_color }} btn">{{ usuarios.current_page }}</a>
+        <a class="page-link text-dark btn">{{ usuarios.current_page }}</a>
       </li>
       <li class="page-item">
-        <a
-          class="page-link text-{{ themeActual.primary_color }} btn"
-          (click)="changePage('siguiente')"
-          *ngIf="usuarios.next_page_url"
+        <a class="page-link text-dark btn" (click)="changePage('siguiente')" *ngIf="usuarios.next_page_url"
           >Siguiente</a
         >
       </li>
       <li class="page-item">
         <a
-          class="page-link text-{{ themeActual.primary_color }} btn"
+          class="page-link text-dark btn"
           (click)="changePage('ultima')"
           *ngIf="usuarios.last_page !== usuarios.current_page"
           >Ultima</a
