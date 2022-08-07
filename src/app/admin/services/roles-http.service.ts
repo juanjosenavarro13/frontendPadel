@@ -17,4 +17,8 @@ export class RolesHttpService {
   delete(id: number): Observable<any> {
     return this.http.delete(environment.apiUrl + 'rol/delete/' + id);
   }
+
+  getRolById(id: number): Observable<rolModel> {
+    return this.http.get<rolModel>(environment.apiUrl + 'rol/getRolById/' + id);
+  }
 }

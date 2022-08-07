@@ -15,4 +15,8 @@ export class RolesService {
   delete(id: number): Observable<any> {
     return this.rolService.delete(id);
   }
+
+  getRolById(id: number): Observable<rolModel> {
+    return this.rolService.getRolById(id);
+  }
 }

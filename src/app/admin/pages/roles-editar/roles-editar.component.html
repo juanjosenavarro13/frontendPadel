@@ -1,0 +1,16 @@
+<app-menu></app-menu>
+<app-spinner *ngIf="!loading"></app-spinner>
+<div class="border border-top-0 p-3" *ngIf="loading">
+  <form #form="ngForm" (ngSubmit)="save(form.value)">
+    <input type="hidden" [(ngModel)]="rol.id" name="id" value="{{ rol.id }}" />
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" [(ngModel)]="rol.nombre" name="nombre" />
+      <label for="floatingInput">Nombre</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="number" class="form-control" [(ngModel)]="rol.nivel" min="0" max="10" name="nivel" />
+      <label for="floatingInput">Nivel</label>
+    </div>
+    <button class="btn btn-dark" type="submit">Guardar</button>
+  </form>
+</div>
