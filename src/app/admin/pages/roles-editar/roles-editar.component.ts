@@ -31,6 +31,9 @@ export class RolesEditarComponent implements OnInit {
   }
 
   save(form: any) {
-    console.log(form);
+    this.rolService.edit(form).subscribe(data => {
+      this.loading = false;
+      this.getRol();
+    });
   }
 }

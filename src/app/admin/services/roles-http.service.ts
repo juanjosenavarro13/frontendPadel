@@ -21,4 +21,8 @@ export class RolesHttpService {
   getRolById(id: number): Observable<rolModel> {
     return this.http.get<rolModel>(environment.apiUrl + 'rol/getRolById/' + id);
   }
+
+  edit(rol: rolModel): Observable<any> {
+    return this.http.put(environment.apiUrl + 'rol/edit', rol);
+  }
 }

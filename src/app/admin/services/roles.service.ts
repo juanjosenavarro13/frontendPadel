@@ -19,4 +19,8 @@ export class RolesService {
   getRolById(id: number): Observable<rolModel> {
     return this.rolService.getRolById(id);
   }
+
+  edit(rol: rolModel): Observable<any> {
+    return this.rolService.edit(rol);
+  }
 }
