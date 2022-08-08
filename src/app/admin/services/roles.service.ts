@@ -23,4 +23,7 @@ export class RolesService {
   edit(rol: rolModel): Observable<any> {
     return this.rolService.edit(rol);
   }
+  createRole(rol: rolModel): Observable<any> {
+    return this.rolService.createRole(rol);
+  }
 }

@@ -1,0 +1,29 @@
+<app-menu></app-menu>
+<form #roleForm="ngForm" class="form-floating mt-5" (ngSubmit)="createRole(roleForm.value)">
+  <div class="form-floating mb-3">
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': nombre.invalid && nombre.touched, 'is-valid': nombre.valid && nombre.touched }"
+      required
+      ngModel
+      name="nombre"
+      #nombre="ngModel" />
+    <label>Nombre del rol</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input
+      type="number"
+      min="0"
+      max="10"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': nivel.invalid && nivel.touched, 'is-valid': nivel.valid && nivel.touched }"
+      required
+      ngModel
+      name="nivel"
+      #nivel="ngModel" />
+    <label>Nivel del rol</label>
+  </div>
+
+  <button type="submit" class="btn btn-dark m-3" [disabled]="roleForm.invalid">Crear</button>
+</form>

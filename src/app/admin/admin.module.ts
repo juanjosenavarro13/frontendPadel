@@ -13,6 +13,7 @@ import { PistasEditarComponent } from './pages/pistas-editar/pistas-editar.compo
 import { PistasCrearComponent } from './pages/pistas-crear/pistas-crear.component';
 import { RolesComponent } from './pages/roles/roles.component';
 import { RolesEditarComponent } from './pages/roles-editar/roles-editar.component';
+import { RolesCrearComponent } from './pages/roles-crear/roles-crear.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RolesEditarComponent } from './pages/roles-editar/roles-editar.componen
     PistasCrearComponent,
     RolesComponent,
     RolesEditarComponent,
+    RolesCrearComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, SharedModule, FormsModule],
 })

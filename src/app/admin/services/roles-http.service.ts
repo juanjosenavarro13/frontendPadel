@@ -25,4 +25,8 @@ export class RolesHttpService {
   edit(rol: rolModel): Observable<any> {
     return this.http.put(environment.apiUrl + 'rol/edit', rol);
   }
+
+  createRole(rol: rolModel): Observable<any> {
+    return this.http.post(environment.apiUrl + 'rol/createRole', rol);
+  }
 }
