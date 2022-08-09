@@ -8,16 +8,21 @@
         <th scope="col">Nombre</th>
         <th scope="col">Creada</th>
         <th scope="col">Actualizada</th>
+        <th scope="col">Accion</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let p of pistas">
         <th scope="row">{{ p.id }}</th>
-        <td>
-          <a class="text-dark" routerLink="/admin/pistas/editar/{{ p.id }}">{{ p.nombre }}</a>
-        </td>
+        <td>{{ p.nombre }}</td>
         <td>{{ p.created_at | date: 'dd-MM-YYYY' }}</td>
         <td>{{ p.updated_at | date: 'dd-MM-YYYY' }}</td>
+        <td>
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-dark" routerLink="/admin/pistas/editar/{{ p.id }}">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="delete(p.id)">Eliminar</button>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
