@@ -1,38 +1,13 @@
 <app-menu></app-menu>
+<app-spinner *ngIf="!loading"></app-spinner>
+<div class="border border-top-0 p-3" *ngIf="loading">
+  <form #form="ngForm" (ngSubmit)="save(form.value)">
+    <input type="hidden" [(ngModel)]="pista.id" name="id" value="{{ pista.id }}" />
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" [(ngModel)]="pista.nombre" name="nombre" />
+      <label for="floatingInput">Nombre</label>
+    </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Creada</th>
-      <th scope="col">Actualizada</th>
-      <th scope="col">Accion</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td scope="row">{{ pista.id }}</td>
-      <td *ngIf="!edit">{{ pista.nombre }}</td>
-      <td *ngIf="edit">
-        <input type="text" class="form-control" id="nombre" [(ngModel)]="pista.nombre" required />
-      </td>
-      <td>{{ pista.created_at | date: 'dd-MM-YYYY' }}</td>
-      <td>{{ pista.updated_at | date: 'dd-MM-YYYY' }}</td>
-      <td>
-        <div class="btn-group" role="group">
-          <button *ngIf="!edit" type="button" class="btn btn-dark" (click)="changeEditMode()">Editar</button>
-          <button
-            *ngIf="edit"
-            type="button"
-            class="btn btn-outline-dark"
-            (click)="save()"
-            [disabled]="pista.nombre === ''">
-            Guardar
-          </button>
-          <button type="button" class="btn btn-danger" (click)="delete()">Eliminar</button>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <button class="btn btn-dark" type="submit">Guardar</button>
+  </form>
+</div>

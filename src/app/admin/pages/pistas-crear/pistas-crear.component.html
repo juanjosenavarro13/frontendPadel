@@ -1,0 +1,13 @@
+<app-menu></app-menu>
+<form #pistaForm="ngForm" class="form-floating mt-5" (ngSubmit)="createPista(pistaForm.value)">
+  <input
+    type="text"
+    class="form-control"
+    [ngClass]="{ 'is-invalid': nombre.invalid && nombre.touched, 'is-valid': nombre.valid && nombre.touched }"
+    required
+    ngModel
+    name="nombre"
+    #nombre="ngModel" />
+  <label>Nombre de la pista</label>
+  <button type="submit" class="btn btn-dark mt-3" [disabled]="nombre.invalid">Crear</button>
+</form>

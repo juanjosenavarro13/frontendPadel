@@ -122,6 +122,7 @@
   },
   "defaultProject": "frontendPadel",
   "cli": {
+    "analytics": "26afe134-63ad-4759-bdfd-dbf5552c89d2",
     "defaultCollection": "@angular-eslint/schematics"
   }
 }

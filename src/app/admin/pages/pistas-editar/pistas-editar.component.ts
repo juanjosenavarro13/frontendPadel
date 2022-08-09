@@ -11,7 +11,7 @@ import { PistasService } from '../../services/pistas.service';
 export class PistasEditarComponent implements OnInit {
   id: number;
   pista = {} as pistaModel;
-  edit: boolean = false;
+  loading: boolean = false;
   constructor(private rutaActiva: ActivatedRoute, private pistaService: PistasService, private router: Router) {
     this.id = rutaActiva.snapshot.params['id'];
   }
@@ -24,28 +24,18 @@ export class PistasEditarComponent implements OnInit {
     this.pistaService.getPistaById(id).subscribe(
       pista => {
         this.pista = pista;
+        this.loading = true;
       },
       error => {
         this.router.navigate(['/admin/pistas']);
       }
     );
   }
-  delete() {
-    if (confirm('¿Estás seguro de que quieres borrar esta pista?')) {
-      this.pistaService.deletePista(this.id).subscribe(data => {
-        this.changeEditMode();
-        this.getPista(this.id);
-      });
-    }
-  }
 
-  changeEditMode() {
-    this.edit = !this.edit;
-  }
-  save() {
-    this.pistaService.updatePista(this.pista, this.id).subscribe(data => {
-      this.changeEditMode();
+  save(form: any) {
+    this.pistaService.updatePista(form, this.id).subscribe(data => {
       this.getPista(this.id);
+      this.router.navigate(['/admin/pistas']);
     });
   }
 }

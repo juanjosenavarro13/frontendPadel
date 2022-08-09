@@ -20,4 +20,12 @@ export class PistasComponent implements OnInit {
       this.pistas = data;
     });
   }
+
+  delete(id: number) {
+    if (confirm('¿Estas seguro de eliminar esta pista?')) {
+      this.pistasService.deletePista(id).subscribe(data => {
+        this.getPistas();
+      });
+    }
+  }
 }
